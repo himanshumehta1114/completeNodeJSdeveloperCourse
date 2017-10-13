@@ -1,5 +1,3 @@
-console.log('Starting app.js');
-
 const yargs = require('yargs');
 const notes = require('./notes.js');
 
@@ -8,7 +6,6 @@ const argv = yargs.argv;
 
 // getting user input at command line by using process.argv
 var command = process.argv[2];
-console.log('Yargs: ',argv);
 if(command === 'add'){
   var note = notes.addNote(argv.title,argv.body);
   if(note){
@@ -19,6 +16,8 @@ if(command === 'add'){
   }
 }else if (command === 'list') {
   var note = notes.getAll();
+  console.log(`Printing ${note.length} note(s)`);
+  note.forEach((n) => notes.logNote(n));
 }else if(command === 'read'){
   var note = notes.getNote(argv.title);
   if(note) {
