@@ -57,5 +57,6 @@
     addNote,
     getAll,
     getNote,
-    removeNote
+    removeNote,
+    logNote
   };
