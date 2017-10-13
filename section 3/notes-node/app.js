@@ -2,8 +2,31 @@ const yargs = require('yargs');
 const notes = require('./notes.js');
 
 //getting user input in key:value pair by using yargs eg. --title=secrets ,then title is key and value is secrets
-const argv = yargs.argv;
-
+// const argv = yargs.argv;
+//requiring arguements ,yargs advanced features
+const titleOptions = {
+  describe: 'Title of note',
+  demand: true,
+  alias: 't'
+};
+const argv = yargs
+    .command('add','Add a new note', {
+      title: titleOptions,
+      body: {
+        describe: 'Body of note',
+        demand: true,
+        alias: 'b'
+      }
+    })
+    .command('list','list all notes')
+    .command('read','read a note', {
+      title: titleOptions
+    })
+    .command('remove','remove a note', {
+      title: titleOptions
+    })
+    .help()
+    .argv;
 // getting user input at command line by using process.argv
 var command = process.argv[2];
 if(command === 'add'){
