@@ -15,21 +15,21 @@ const argv = yargs
   .alias('help','h')
   .argv;
 
-// geocode.getAddress(argv.a, (errorMessage,results) => {
-//   if(errorMessage){
-//     console.log(errorMessage);
-//   }else{
-//     console.log(JSON.stringify(results, undefined, 2));
-//   }
-// });
-
-weather.getWeather(29.136086,75.74104100000001, (errorMsg, temp) => {
-  if(errorMsg){
-    console.log(errorMsg);
+geocode.getAddress(argv.a, (errorMessage,results) => {
+  if(errorMessage){
+    console.log(errorMessage);
   }else{
-    console.log(temp);
+    console.log(results.address);
+    weather.getWeather(results.latitude,results.longitude, (errorMsg, temp) => {
+      if(errorMsg){
+        console.log(errorMsg);
+      }else{
+        console.log(`Its currently ${temp.temperature}.It feels like ${temp.apparentTemperature}`);
+      }
+    });
   }
 });
+
 
 // request({
 //   url: `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedURI}`,
