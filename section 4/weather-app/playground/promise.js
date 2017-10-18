@@ -13,11 +13,12 @@ var asyncAdd = (a,b) => {
 asyncAdd(5,7).then((res) => {
   console.log('result : ' + res);
   return asyncAdd(res, 33);
-}, (errorMessage) => {
-  console.log('error : ' + errorMessage);
 }).then((res) => {
   console.log('result : ' + res);
-} , (errorMessage) => {
+  return asyncAdd(res, '4');
+}).then((res) => {
+  console.log('result : ' + res);
+}).catch ((errorMessage) => {
   console.log(errorMessage);
 });
 
