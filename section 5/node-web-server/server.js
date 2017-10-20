@@ -2,7 +2,7 @@ const express = require('express');
 const hbs = require('hbs');
 
 var app = express();
-
+hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
 
 app.use(express.static(__dirname + '/public'));
@@ -21,7 +21,7 @@ app.get('/', (request, response) => {
   // });
   response.render('home.hbs', {
     welcomeMessage : 'Welcome to home page',
-    title: 'Home Page',
+    pageTitle: 'Home Page',
     year: new Date().getFullYear(),
     name: 'Himanshu Mehta',
     skills: '[c++,html,css,javascript]'
