@@ -11,11 +11,22 @@ it('should add two numbers', () => {
   // throw new Error(`Expected 44 but got ${res}`);
 });
 
-it('should square two numbers', () => {
-  var sq = utils.square(4);
-  expect(sq).toBe(16).toBeA('number');
+it('should square two numbers', (done) => {
+  var sq = utils.square(4, (square) => {
+    expect(square).toBe(16).toBeA('number');
+    done();
+  });
   // if(sq != 16)
   // throw new Error(`Expected 16 but got ${sq}`);
+});
+
+
+it('Should async add two numbers', (done) => {
+  utils.asyncAdd(4,3, (sum)=> {
+    expect(sum).toBe(7).toBeA('number'); //Although this test should fail but it passes because according to us its an
+    // asynchronous function and it takes 1000ms to return value but mocha doesn't recognise it as asynchronous function and it doesn't wait for 1 sec.It sees no error at that instant and shows it as passed test
+    done();   // passing done as an argument to 'it' mocha sees it as asynchronous function and we call done() function to make mocha check the asynchronous function.
+  });
 });
 
 // should verify first and last names are set
