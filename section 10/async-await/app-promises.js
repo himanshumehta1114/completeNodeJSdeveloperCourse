@@ -67,14 +67,16 @@ const getStatusAlt = async (userId) => {
     average = grades.map((grade) => grade.grade).reduce((a,b) => a+b);
   }
   return `${user.name} has a ${average}% in the class`;
-  
+
 };
 
-getStatusAlt(2).then((name) => {
-  console.log(name);
-}).catch((e)=>{
-  console.log(e);
-});
+
+
+// getStatusAlt(2).then((name) => {
+//   console.log(name);
+// }).catch((e)=>{
+//   console.log(e);
+// });
 
 //
 // getStatus(2).then((status) => {
